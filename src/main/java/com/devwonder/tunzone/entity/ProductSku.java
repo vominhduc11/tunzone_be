@@ -17,108 +17,64 @@ import java.util.Set;
 @Table(name = "product_skus")
 @Entity
 public class ProductSku extends BaseAuditEntity {
-    @Id
-    @Column(name = "sku")
-    private String SKU;
+        @Id
+        @Column(name = "sku")
+        private String SKU;
 
-    @Column(
-            name = "imgs",
-            nullable = false,
-            columnDefinition = "TEXT[]"
-    )
-    private List<String> imgs;
+        @Column(name = "imgs", nullable = false, columnDefinition = "TEXT[]")
+        private List<String> imgs;
 
-    @Column(
-            name = "rating",
-            nullable = false
-    )
-    private int rating;
+        @Column(name = "rating", nullable = false)
+        private int rating;
 
-    @Column(
-            name = "rating_count",
-            nullable = false
-    )
-    private int rating_count;
+        @Column(name = "rating_count", nullable = false)
+        private int rating_count;
 
-    @Column(
-            name = "name",
-            nullable = false
-    )
-    private String name;
+        @Column(name = "name", nullable = false)
+        private String name;
 
-    @Column(
-            name = "features",
-            nullable = false,
-            columnDefinition = "TEXT[]"
-    )
-    private List<String> features;
+        @Column(name = "features", nullable = false, columnDefinition = "TEXT[]")
+        private List<String> features;
 
-    @Lob
-    @Column(
-            name = "spec",
-            nullable = false
-    )
-    private String spec;
+        @Lob
+        @Column(name = "spec", nullable = false)
+        private String spec;
 
-    @Lob
-    @Column(
-            name = "video",
-            nullable = false
-    )
-    private String video;
+        @Lob
+        @Column(name = "video", nullable = false)
+        private String video;
 
-    @Lob
-    @Column(
-            name = "description",
-            nullable = false
-    )
-    private String desc;
+        @Lob
+        @Column(name = "description", nullable = false)
+        private String desc;
 
-    @Column(
-            name = "in_boxs",
-            nullable = false,
-            columnDefinition = "TEXT[]"
-    )
-    private List<String> in_boxs;
+        @Column(name = "in_boxs", nullable = false, columnDefinition = "TEXT[]")
+        private List<String> in_boxs;
 
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(
-            name = "faqs",
-            nullable = false,
-            columnDefinition = "json"
-    )
-    private String faqs;
+        @JdbcTypeCode(SqlTypes.JSON)
+        @Column(name = "faqs", nullable = false, columnDefinition = "json")
+        private String faqs;
 
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(
-            name = "wholesale_prices",
-            nullable = false,
-            columnDefinition = "jsonb"
-    )
-    private String wholesale_prices;
+        @JdbcTypeCode(SqlTypes.JSON)
+        @Column(name = "wholesale_prices", nullable = false, columnDefinition = "jsonb")
+        private String wholesale_prices;
 
-    @Column(
-            name = "inventory_count",
-            nullable = false
-    )
-    private int inventory_count;
+        @Column(name = "inventory_count", nullable = false)
+        private int inventory_count;
 
-    @Column(
-            name = "warranty",
-            nullable = false
-    )
-    private int warranty;
+        @Column(name = "warranty", nullable = false)
+        private int warranty;
 
-    @Column(
-            name = "deleted",
-            nullable = false
-    )
-    private boolean deleted = false;
+        @Column(name = "deleted", nullable = false)
+        private boolean deleted = false;
 
-    @OneToMany(mappedBy = "productSku", fetch = FetchType.LAZY)
-    private Set<Product> products;
+        @OneToMany(mappedBy = "productSku", fetch = FetchType.LAZY)
+        private Set<Product> products;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_distributor")
-    private Distributor distributor;
+        @ManyToOne(fetch = FetchType.LAZY, optional = false)
+        @JoinColumn(name = "id_distributor")
+        private Distributor distributor;
+
+        @OneToMany(mappedBy = "productSku", fetch = FetchType.LAZY)
+        private Set<Reseller_orders_product_skus> resellerOrdersProductSkuses;
 }
